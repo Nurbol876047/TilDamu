@@ -51,27 +51,14 @@ require __DIR__ . '/../../layouts/header.php';
                 </div>
             </div>
 
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700"><?= e(tr('auth.role_title')) ?></label>
-                <div class="grid grid-cols-2 gap-3">
-                    <label class="relative cursor-pointer">
-                        <input type="radio" name="role" value="parent" <?= ($old['role'] ?? 'parent') === 'parent' ? 'checked' : '' ?> class="peer sr-only register-role-input">
-                        <div class="peer-checked:ring-2 peer-checked:ring-blue-soft peer-checked:bg-blue-50 border border-gray-200 rounded-2xl p-4 text-center transition-all hover:bg-gray-50">
-                            <div class="w-12 h-12 rounded-full bg-mint/20 flex items-center justify-center mx-auto mb-2 text-mint">
-                                <?= ui_icon('user', 'w-6 h-6') ?>
-                            </div>
-                            <p class="font-medium text-gray-800 text-sm"><?= e(tr('auth.role_parent')) ?></p>
-                        </div>
-                    </label>
-                    <label class="relative cursor-pointer">
-                        <input type="radio" name="role" value="therapist" <?= ($old['role'] ?? '') === 'therapist' ? 'checked' : '' ?> class="peer sr-only register-role-input">
-                        <div class="peer-checked:ring-2 peer-checked:ring-blue-soft peer-checked:bg-blue-50 border border-gray-200 rounded-2xl p-4 text-center transition-all hover:bg-gray-50">
-                            <div class="w-12 h-12 rounded-full bg-purple-soft/20 flex items-center justify-center mx-auto mb-2 text-purple-500">
-                                <?= ui_icon('shield', 'w-6 h-6') ?>
-                            </div>
-                            <p class="font-medium text-gray-800 text-sm"><?= e(tr('auth.role_therapist')) ?></p>
-                        </div>
-                    </label>
+            <div class="rounded-2xl border border-blue-100 bg-blue-50 p-4">
+                <input type="hidden" name="role" value="patient" class="register-role-input">
+                <div class="flex items-start gap-3">
+                    <div class="mt-0.5 text-blue-soft"><?= ui_icon('user', 'w-5 h-5') ?></div>
+                    <div>
+                        <p class="font-semibold text-gray-800"><?= e(tr('auth.role_patient', 'Клиент / родитель')) ?></p>
+                        <p class="mt-1 text-sm text-gray-600"><?= e(tr('auth.patient_notice', 'Регистрация открыта для клиентов. Администраторы, разработчики и логопеды создаются администратором.')) ?></p>
+                    </div>
                 </div>
             </div>
 
@@ -130,12 +117,12 @@ require __DIR__ . '/../../layouts/header.php';
 $extraScripts = <<<JS
 <script>
 function toggleChildFields() {
-    const role = document.querySelector('input[name="role"]:checked')?.value || 'parent';
+    const role = document.querySelector('input[name="role"]:checked')?.value || document.querySelector('input[name="role"]')?.value || 'patient';
     const childFields = document.getElementById('childFields');
     const childAgeWrap = document.getElementById('childAgeWrap');
     const childNameInput = document.querySelector('input[name="child_name"]');
 
-    if (role === 'parent') {
+    if (role === 'patient' || role === 'parent' || role === 'client') {
         childFields.classList.remove('hidden');
         childAgeWrap.classList.remove('hidden');
         childNameInput?.setAttribute('required', 'required');

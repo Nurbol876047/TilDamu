@@ -65,10 +65,7 @@ final class AuthController extends Controller
             $userModel->updateAvatar((int) $user['id'], $avatarUrl);
         }
 
-        session_regenerate_id(true);
-        $_SESSION['user_id'] = (int) $user['id'];
-        $_SESSION['user_role'] = $user['role'];
-        $_SESSION['user_name'] = $user['full_name'];
+        $this->storeUserSession($user);
 
         $intended = (string) ($_SESSION['auth_intended'] ?? '');
         unset($_SESSION['auth_intended']);
@@ -77,8 +74,9 @@ final class AuthController extends Controller
             redirect($intended);
         }
 
-        $redirect = match ($user['role']) {
-            'therapist', 'admin' => '/therapist.php',
+        $redirect = match (User::normalizeRole((string) $user['role'])) {
+            User::ROLE_ADMIN, User::ROLE_DEVELOPER, User::ROLE_RESEARCHER => '/admin-users.php',
+            User::ROLE_THERAPIST => '/therapist.php',
             default => '/results.php',
         };
         redirect($redirect);
@@ -107,7 +105,7 @@ final class AuthController extends Controller
             'phone' => trim((string) $request->input('phone', '')),
             'password' => (string) $request->input('password', ''),
             'password_confirm' => (string) $request->input('password_confirm', ''),
-            'role' => (string) $request->input('role', 'parent'),
+            'role' => (string) $request->input('role', User::ROLE_PATIENT),
             'child_name' => trim((string) $request->input('child_name', '')),
             'child_age' => $request->input('child_age'),
         ];
@@ -128,10 +126,12 @@ final class AuthController extends Controller
         if ($data['password'] !== $data['password_confirm']) {
             $errors[] = tr('auth.password_mismatch');
         }
-        if (!in_array($data['role'], ['parent', 'therapist'], true)) {
-            $data['role'] = 'parent';
+        $role = User::normalizeRole($data['role']);
+        if ($role !== User::ROLE_PATIENT) {
+            $role = User::ROLE_PATIENT;
         }
-        if ($data['role'] === 'parent' && $data['child_name'] === '') {
+        $data['role'] = $role;
+        if ($data['role'] === User::ROLE_PATIENT && $data['child_name'] === '') {
             $errors[] = tr('auth.enter_child_name');
         }
 
@@ -168,12 +168,9 @@ final class AuthController extends Controller
             redirect('/register.php');
         }
 
-        session_regenerate_id(true);
-        $_SESSION['user_id'] = (int) $user['id'];
-        $_SESSION['user_role'] = $user['role'];
-        $_SESSION['user_name'] = $user['full_name'];
+        $this->storeUserSession($user);
 
-        redirect('/');
+        redirect('/results.php');
     }
 
     public function logout(Request $request): void
@@ -181,5 +178,13 @@ final class AuthController extends Controller
         unset($_SESSION['user_id'], $_SESSION['user_role'], $_SESSION['user_name']);
         session_regenerate_id(true);
         redirect('/login.php');
+    }
+
+    private function storeUserSession(array $user): void
+    {
+        session_regenerate_id(true);
+        $_SESSION['user_id'] = (int) $user['id'];
+        $_SESSION['user_role'] = User::normalizeRole((string) ($user['role'] ?? '')) ?? User::ROLE_PATIENT;
+        $_SESSION['user_name'] = (string) $user['full_name'];
     }
 }

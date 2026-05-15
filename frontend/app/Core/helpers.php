@@ -157,7 +157,9 @@ function translations(): array
                 'has_account' => 'Уже есть аккаунт?',
                 'role_title' => 'Я регистрируюсь как',
                 'role_parent' => 'Родитель',
+                'role_patient' => 'Клиент / родитель',
                 'role_therapist' => 'Логопед',
+                'patient_notice' => 'Регистрация открыта для клиентов. Администраторы, разработчики и логопеды создаются администратором.',
                 'avatar_title' => 'Аватар профиля',
                 'avatar_hint' => 'Поддерживаются JPG, JPEG и PNG до 5 МБ.',
                 'avatar_change_hint' => 'Можно загрузить новый аватар при входе.',
@@ -231,6 +233,36 @@ function translations(): array
                 'form_submit' => 'Создать курс',
                 'lessons' => 'уроков',
                 'by' => 'от',
+            ],
+            'admin_users_page' => [
+                'nav' => 'Пользователи',
+                'eyebrow' => 'Доступы',
+                'title' => 'Пользователи',
+                'subtitle' => 'Администратор создаёт служебные аккаунты, разработчик может просматривать список.',
+                'total' => 'Всего',
+                'create_title' => 'Создать пользователя',
+                'create_hint' => 'Клиенты могут регистрироваться сами, а служебные роли выдаёт администратор.',
+                'role' => 'Роль',
+                'create' => 'Создать',
+                'table_title' => 'Список пользователей',
+                'admin_hint' => 'Администратор может создавать, менять роли и отключать пользователей.',
+                'readonly_hint' => 'Режим просмотра: управление доступно только администратору.',
+                'empty_text' => 'Пользователей пока нет.',
+                'status' => 'Статус',
+                'last_login' => 'Последний вход',
+                'actions' => 'Действия',
+                'active' => 'Активен',
+                'disabled' => 'Отключён',
+                'new_password' => 'Новый пароль',
+                'disable' => 'Отключить',
+                'enable' => 'Включить',
+                'created' => 'Пользователь создан.',
+                'updated' => 'Пользователь обновлён.',
+                'email_exists' => 'Пользователь с таким email уже существует.',
+                'save_error' => 'Не удалось сохранить пользователя.',
+                'invalid_role' => 'Недопустимая роль пользователя.',
+                'not_found' => 'Пользователь не найден.',
+                'self_disable_forbidden' => 'Нельзя отключить собственный аккаунт.',
             ],
             'dataset_page' => [
                 'title' => 'Сбор датасета',
@@ -314,7 +346,9 @@ function translations(): array
                 'has_account' => 'Аккаунтыңыз бар ма?',
                 'role_title' => 'Мен мына рөлмен тіркелемін',
                 'role_parent' => 'Ата-ана',
+                'role_patient' => 'Клиент / ата-ана',
                 'role_therapist' => 'Логопед',
+                'patient_notice' => 'Тіркелу клиенттерге ашық. Әкімшілерді, әзірлеушілерді және логопедтерді әкімші жасайды.',
                 'avatar_title' => 'Профиль аватары',
                 'avatar_hint' => 'JPG, JPEG және PNG форматтары, 5 МБ-қа дейін.',
                 'avatar_change_hint' => 'Кіргенде жаңа аватар жүктеуге болады.',
@@ -388,6 +422,36 @@ function translations(): array
                 'form_submit' => 'Курс құру',
                 'lessons' => 'сабақ',
                 'by' => 'автор',
+            ],
+            'admin_users_page' => [
+                'nav' => 'Пайдаланушылар',
+                'eyebrow' => 'Қолжетімділік',
+                'title' => 'Пайдаланушылар',
+                'subtitle' => 'Әкімші қызметтік аккаунттарды жасайды, әзірлеуші тізімді қарай алады.',
+                'total' => 'Барлығы',
+                'create_title' => 'Пайдаланушы жасау',
+                'create_hint' => 'Клиенттер өздері тіркеле алады, ал қызметтік рөлдерді әкімші береді.',
+                'role' => 'Рөл',
+                'create' => 'Жасау',
+                'table_title' => 'Пайдаланушылар тізімі',
+                'admin_hint' => 'Әкімші пайдаланушыларды жасап, рөлдерін өзгертіп, өшіре алады.',
+                'readonly_hint' => 'Көру режимі: басқару тек әкімшіге қолжетімді.',
+                'empty_text' => 'Әзірге пайдаланушылар жоқ.',
+                'status' => 'Күйі',
+                'last_login' => 'Соңғы кіру',
+                'actions' => 'Әрекеттер',
+                'active' => 'Белсенді',
+                'disabled' => 'Өшірілген',
+                'new_password' => 'Жаңа құпиясөз',
+                'disable' => 'Өшіру',
+                'enable' => 'Қосу',
+                'created' => 'Пайдаланушы жасалды.',
+                'updated' => 'Пайдаланушы жаңартылды.',
+                'email_exists' => 'Бұл email арқылы пайдаланушы бар.',
+                'save_error' => 'Пайдаланушыны сақтау мүмкін болмады.',
+                'invalid_role' => 'Пайдаланушы рөлі дұрыс емес.',
+                'not_found' => 'Пайдаланушы табылмады.',
+                'self_disable_forbidden' => 'Өз аккаунтыңызды өшіруге болмайды.',
             ],
             'dataset_page' => [
                 'title' => 'Датасет жинау',
@@ -471,7 +535,9 @@ function translations(): array
                 'has_account' => 'Already have an account?',
                 'role_title' => 'I am registering as',
                 'role_parent' => 'Parent',
+                'role_patient' => 'Client / parent',
                 'role_therapist' => 'Therapist',
+                'patient_notice' => 'Registration is open for clients. Admins, developers, and therapists are created by an admin.',
                 'avatar_title' => 'Profile Avatar',
                 'avatar_hint' => 'JPG, JPEG and PNG supported, up to 5 MB.',
                 'child_name' => 'Child Name',
@@ -580,6 +646,36 @@ function translations(): array
                 'lessons' => 'lessons',
                 'by' => 'by',
             ],
+            'admin_users_page' => [
+                'nav' => 'Users',
+                'eyebrow' => 'Access',
+                'title' => 'Users',
+                'subtitle' => 'Admins create staff accounts, while developers can view the list.',
+                'total' => 'Total',
+                'create_title' => 'Create user',
+                'create_hint' => 'Clients can register themselves; staff roles are assigned by an admin.',
+                'role' => 'Role',
+                'create' => 'Create',
+                'table_title' => 'User list',
+                'admin_hint' => 'Admin can create users, change roles, and disable accounts.',
+                'readonly_hint' => 'Read-only mode: management is available only to admins.',
+                'empty_text' => 'No users yet.',
+                'status' => 'Status',
+                'last_login' => 'Last login',
+                'actions' => 'Actions',
+                'active' => 'Active',
+                'disabled' => 'Disabled',
+                'new_password' => 'New password',
+                'disable' => 'Disable',
+                'enable' => 'Enable',
+                'created' => 'User created.',
+                'updated' => 'User updated.',
+                'email_exists' => 'A user with this email already exists.',
+                'save_error' => 'Could not save the user.',
+                'invalid_role' => 'Invalid user role.',
+                'not_found' => 'User not found.',
+                'self_disable_forbidden' => 'You cannot disable your own account.',
+            ],
         ],
     ];
 }
@@ -621,6 +717,7 @@ function current_page_key(): string
         'course-create', 'course-create.php' => 'courses',
         'dataset', 'dataset.php' => 'dataset',
         'dataset-history', 'dataset-history.php' => 'dataset_history',
+        'admin-users', 'admin-users.php' => 'admin_users',
         default => $path,
     };
 }
@@ -673,6 +770,68 @@ function ui_icon(string $name, string $class = 'w-5 h-5', string $extraAttribute
     return '<svg class="' . e($class) . '" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ' . $extraAttributes . '>' . $body . '</svg>';
 }
 
+function auth_normalize_role(?string $role): string
+{
+    $normalized = \App\Models\User::normalizeRole($role);
+    if ($normalized !== null) {
+        return $normalized;
+    }
+
+    $fallback = strtolower(trim((string) $role));
+    return $fallback !== '' ? $fallback : 'guest';
+}
+
+function auth_role_label(?string $role = null): string
+{
+    $role = auth_normalize_role($role ?? auth_role());
+    $labels = [
+        'ru' => [
+            'patient' => 'Клиент',
+            'therapist' => 'Логопед',
+            'admin' => 'Администратор',
+            'developer' => 'Разработчик',
+            'researcher' => 'Исследователь',
+            'guest' => 'Гость',
+        ],
+        'kk' => [
+            'patient' => 'Клиент',
+            'therapist' => 'Логопед',
+            'admin' => 'Әкімші',
+            'developer' => 'Әзірлеуші',
+            'researcher' => 'Зерттеуші',
+            'guest' => 'Қонақ',
+        ],
+        'en' => [
+            'patient' => 'Client',
+            'therapist' => 'Therapist',
+            'admin' => 'Admin',
+            'developer' => 'Developer',
+            'researcher' => 'Researcher',
+            'guest' => 'Guest',
+        ],
+    ];
+
+    $lang = current_language();
+    return $labels[$lang][$role] ?? $labels['ru'][$role] ?? $role;
+}
+
+function auth_role_options(): array
+{
+    $roles = [];
+    foreach (\App\Models\User::adminCreatableRoles() as $role) {
+        $roles[$role] = auth_role_label($role);
+    }
+
+    return $roles;
+}
+
+function auth_role_matches(string $role, array $allowedRoles): bool
+{
+    $role = auth_normalize_role($role);
+    $allowed = array_map('auth_normalize_role', $allowedRoles);
+    return in_array($role, $allowed, true);
+}
+
 function auth_check(): bool
 {
     return isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0;
@@ -688,6 +847,13 @@ function auth_user(): ?array
         return $cached;
     }
     $cached = (new \App\Models\User())->findById((int) $_SESSION['user_id']);
+    if (!$cached || !((int) ($cached['is_active'] ?? 0))) {
+        unset($_SESSION['user_id'], $_SESSION['user_role'], $_SESSION['user_name']);
+        $cached = null;
+        return null;
+    }
+    $_SESSION['user_role'] = auth_normalize_role((string) ($cached['role'] ?? ''));
+    $_SESSION['user_name'] = (string) ($cached['full_name'] ?? '');
     return $cached;
 }
 
@@ -698,7 +864,7 @@ function auth_id(): ?int
 
 function auth_role(): string
 {
-    return (string) ($_SESSION['user_role'] ?? 'guest');
+    return auth_normalize_role((string) ($_SESSION['user_role'] ?? 'guest'));
 }
 
 function auth_name(): string
@@ -708,7 +874,7 @@ function auth_name(): string
 
 function auth_is(string $role): bool
 {
-    return auth_role() === $role;
+    return auth_role_matches(auth_role(), [$role]);
 }
 
 function auth_require(string ...$roles): void
@@ -720,7 +886,12 @@ function auth_require(string ...$roles): void
         $_SESSION['auth_intended'] = (string) ($_SERVER['REQUEST_URI'] ?? '/');
         redirect('/login.php');
     }
-    if ($roles !== [] && !in_array(auth_role(), $roles, true)) {
+    if (auth_user() === null) {
+        $_SESSION['auth_error'] = tr('auth.invalid_credentials', 'Сессия недействительна. Войдите снова.');
+        $_SESSION['auth_intended'] = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+        redirect('/login.php');
+    }
+    if ($roles !== [] && !auth_role_matches(auth_role(), $roles)) {
         http_response_code(403);
         echo current_language() === 'kk' ? '403 Қол жеткізуге тыйым салынған' : '403 Доступ запрещён';
         exit;
@@ -729,7 +900,7 @@ function auth_require(string ...$roles): void
 
 function auth_has_any_role(string ...$roles): bool
 {
-    return auth_check() && ($roles === [] || in_array(auth_role(), $roles, true));
+    return auth_check() && ($roles === [] || auth_role_matches(auth_role(), $roles));
 }
 
 function auth_initials(?string $name = null): string

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Controllers\AuthController;
+use App\Controllers\AdminUserController;
 use App\Controllers\CourseController;
 use App\Controllers\DiagnosisController;
 use App\Controllers\HomeController;
@@ -22,6 +23,10 @@ app()->router()->get('/therapist', [TherapistController::class, 'index']);
 app()->router()->get('/courses', [CourseController::class, 'index']);
 app()->router()->get('/dataset', [DiagnosisController::class, 'dataset']);
 app()->router()->get('/dataset-history', [DiagnosisController::class, 'datasetHistory']);
+app()->router()->get('/admin-users', [AdminUserController::class, 'index']);
+app()->router()->post('/admin-users/store', [AdminUserController::class, 'store']);
+app()->router()->post('/admin-users/update', [AdminUserController::class, 'update']);
+app()->router()->post('/admin-users/toggle', [AdminUserController::class, 'toggle']);
 app()->router()->get('/course-create', [CourseController::class, 'create']);
 app()->router()->post('/course-store', [CourseController::class, 'store']);
 
@@ -38,5 +43,9 @@ app()->router()->get('/therapist.php', [TherapistController::class, 'index']);
 app()->router()->get('/courses.php', [CourseController::class, 'index']);
 app()->router()->get('/dataset.php', [DiagnosisController::class, 'dataset']);
 app()->router()->get('/dataset-history.php', [DiagnosisController::class, 'datasetHistory']);
+app()->router()->get('/admin-users.php', [AdminUserController::class, 'index']);
+app()->router()->post('/admin-users/store.php', [AdminUserController::class, 'store']);
+app()->router()->post('/admin-users/update.php', [AdminUserController::class, 'update']);
+app()->router()->post('/admin-users/toggle.php', [AdminUserController::class, 'toggle']);
 app()->router()->get('/course-create.php', [CourseController::class, 'create']);
 app()->router()->post('/course-store.php', [CourseController::class, 'store']);

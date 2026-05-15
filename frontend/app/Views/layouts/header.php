@@ -151,14 +151,15 @@ $avatarUrl = auth_avatar_url($authUser);
                 ['page' => 'diagnosis', 'href' => '/diagnosis.php', 'label' => $t['diagnosis'], 'icon' => '<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>', 'roles' => []],
                 ['page' => 'results', 'href' => '/results.php', 'label' => $t['results'], 'icon' => '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>', 'roles' => []],
                 ['page' => 'recommendations', 'href' => '/recommendations.php', 'label' => $t['recommendations'], 'icon' => '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>', 'roles' => []],
-                ['page' => 'therapist', 'href' => '/therapist.php', 'label' => $t['therapist'], 'icon' => '<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/>', 'roles' => ['therapist', 'admin']],
+                ['page' => 'therapist', 'href' => '/therapist.php', 'label' => $t['therapist'], 'icon' => '<path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/>', 'roles' => \App\Models\User::THERAPIST_PANEL_ROLES],
                 ['page' => 'courses', 'href' => '/courses.php', 'label' => $t['courses'] ?? 'Courses', 'icon' => '<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>', 'roles' => []],
                 ['page' => 'dataset', 'href' => '/dataset.php', 'label' => $t['dataset'] ?? 'Dataset', 'icon' => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>', 'roles' => []],
-                ['page' => 'dataset_history', 'href' => '/dataset-history.php', 'label' => $t['dataset_history'] ?? 'История датасета', 'icon' => '<path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l3 2"/>', 'roles' => []],
+                ['page' => 'dataset_history', 'href' => '/dataset-history.php', 'label' => $t['dataset_history'] ?? 'История датасета', 'icon' => '<path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l3 2"/>', 'roles' => \App\Models\User::DATASET_MANAGER_ROLES],
+                ['page' => 'admin_users', 'href' => '/admin-users.php', 'label' => tr('admin_users_page.nav', 'Пользователи'), 'icon' => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', 'roles' => \App\Models\User::USER_TABLE_ROLES],
             ];
             $currentRole = auth_role();
             foreach ($navItems as $item):
-                if (!empty($item['roles']) && !in_array($currentRole, $item['roles'], true)) {
+                if (!empty($item['roles']) && !auth_role_matches($currentRole, $item['roles'])) {
                     continue;
                 }
                 $active = is_active_page($item['page']);

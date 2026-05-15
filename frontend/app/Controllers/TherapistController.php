@@ -8,12 +8,13 @@ use App\Core\Controller;
 use App\Core\Request;
 use App\Models\Assessment;
 use App\Models\Child;
+use App\Models\User;
 
 final class TherapistController extends Controller
 {
     public function index(Request $request): void
     {
-        auth_require('therapist', 'admin');
+        auth_require(...User::THERAPIST_PANEL_ROLES);
 
         $assessmentModel = new Assessment();
         $childModel = new Child();
@@ -64,7 +65,7 @@ final class TherapistController extends Controller
 
     public function saveNotes(Request $request): never
     {
-        auth_require('therapist', 'admin');
+        auth_require(...User::THERAPIST_PANEL_ROLES);
         $data = $request->all();
         $childId = (int) ($data['child_id'] ?? 0);
         $notes = trim((string) ($data['notes'] ?? ''));

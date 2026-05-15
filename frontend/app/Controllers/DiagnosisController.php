@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\Request;
+use App\Models\User;
 use App\Services\AiClient;
 use App\Services\AssessmentBuilder;
 use App\Services\DiagnosisSessionService;
@@ -30,6 +31,8 @@ final class DiagnosisController extends Controller
 
     public function datasetHistory(Request $request): void
     {
+        auth_require(...User::DATASET_MANAGER_ROLES);
+
         $this->view('pages.dataset_history', [
             'pageTitle' => (string) t('dataset_history'),
         ]);

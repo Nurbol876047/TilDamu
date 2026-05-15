@@ -38,6 +38,9 @@ SQL);
 
                 $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password_hash, role, therapist_id, created_at) VALUES ('Алия Нурланова', 'therapist@tildamu.kz', '+7 700 000 00 01', :hash, 'therapist', 1, NOW())");
                 $stmt->execute(['hash' => $hash]);
+
+                $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password_hash, role, created_at) VALUES ('Разработчик TilDamu', 'developer@tildamu.kz', '+7 700 000 00 02', :hash, 'developer', NOW())");
+                $stmt->execute(['hash' => $hash]);
             }
         } catch (\PDOException $e) {
             // users table not yet created — skip

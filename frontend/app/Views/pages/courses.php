@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 $courses ??= [];
-$canManageCourses ??= auth_has_any_role('therapist', 'admin');
+$canManageCourses ??= auth_has_any_role(...\App\Models\User::COURSE_MANAGER_ROLES);
 require __DIR__ . '/../layouts/header.php';
 ?>
 <div class="max-w-6xl mx-auto space-y-8">

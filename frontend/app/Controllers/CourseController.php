@@ -7,12 +7,13 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Core\Request;
 use App\Models\Course;
+use App\Models\User;
 
 final class CourseController extends Controller
 {
     public function index(Request $request): void
     {
-        $publishedOnly = !auth_has_any_role('therapist', 'admin');
+        $publishedOnly = !auth_has_any_role(...User::COURSE_MANAGER_ROLES);
         $courses = (new Course())->all($publishedOnly);
         // Load media for each course
         $courseModel = new Course();
@@ -24,13 +25,13 @@ final class CourseController extends Controller
         $this->view('pages.courses', [
             'pageTitle' => tr('courses_page.title', 'Курсы лечения'),
             'courses' => $courses,
-            'canManageCourses' => auth_has_any_role('therapist', 'admin'),
+            'canManageCourses' => auth_has_any_role(...User::COURSE_MANAGER_ROLES),
         ]);
     }
 
     public function create(Request $request): void
     {
-        auth_require('therapist', 'admin');
+        auth_require(...User::COURSE_MANAGER_ROLES);
         $this->view('pages.course_create', [
             'pageTitle' => tr('courses_page.create', 'Создать курс'),
             'error' => $_SESSION['course_error'] ?? null,
@@ -41,7 +42,7 @@ final class CourseController extends Controller
 
     public function store(Request $request): void
     {
-        auth_require('therapist', 'admin');
+        auth_require(...User::COURSE_MANAGER_ROLES);
 
         $data = [
             'title' => trim((string) $request->input('title', '')),

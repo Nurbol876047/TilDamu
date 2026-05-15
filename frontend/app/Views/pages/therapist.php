@@ -37,7 +37,7 @@ require __DIR__ . '/../layouts/header.php';
             <?php endif; ?>
             <div>
                 <p class="font-semibold text-gray-800"><?= e(auth_name()) ?></p>
-                <p class="text-sm text-gray-500"><?= auth_is('admin') ? e($therapistCopy['admin']) : e($therapistCopy['therapist']) ?></p>
+                <p class="text-sm text-gray-500"><?= e(auth_role_label()) ?></p>
             </div>
         </div>
     </div>
